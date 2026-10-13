@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#102b2b">
+<title>Rutas 360 · Guía inmersiva</title>
+<meta name="description" content="Guía turística y educativa inmersiva con fotografías panorámicas 360°.">
+<script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+<style>
+:root{--ink:#142927;--muted:#61716b;--paper:#f5f3eb;--green:#c5e2a4;--accent:#df704c;--line:rgba(20,41,39,.14)}
+*{box-sizing:border-box}html,body{margin:0;min-height:100%;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--paper);color:var(--ink)}
+button{font:inherit;cursor:pointer}button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.topbar{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,4vw,56px);border-bottom:1px solid var(--line);background:rgba(245,243,235,.96);position:relative;z-index:4}
+.brand{display:flex;align-items:center;gap:11px;font-weight:850;letter-spacing:-.04em}.brand-mark{width:35px;height:35px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-size:20px}.brand small{display:block;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.top-actions{display:flex;gap:8px}.btn{border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:transparent;color:var(--ink);font-weight:750;font-size:13px}.btn.primary{background:var(--ink);color:white;border-color:var(--ink)}
+main{max-width:1400px;margin:auto;padding:clamp(20px,4vw,52px)}.eyebrow{font-size:11px;font-weight:850;letter-spacing:.17em;text-transform:uppercase;color:#58705e}.hero{display:grid;grid-template-columns:1fr minmax(260px,.72fr);gap:30px;align-items:end;margin-bottom:28px}.hero h1{font-size:clamp(38px,6vw,76px);letter-spacing:-.075em;line-height:.96;margin:13px 0 16px;max-width:780px}.hero p{color:var(--muted);line-height:1.65;max-width:650px;margin:0}.hero-note{border-left:3px solid var(--accent);padding:7px 0 7px 17px;color:var(--muted);font-size:13px;line-height:1.55}.hero-note strong{display:block;color:var(--ink);font-size:14px;margin-bottom:5px}
+.workspace{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(280px,.75fr);gap:18px;align-items:stretch}.viewer-card,.side-card{border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fffdf7;min-width:0}.viewer-head{padding:16px 19px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--line)}.viewer-head strong{font-size:14px}.live-tag{font-size:10px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;background:#e7f0dc;padding:7px 9px;border-radius:999px}.scene-wrap{position:relative;height:clamp(330px,47vw,570px);background:#142927}a-scene{width:100%;height:100%;position:absolute;inset:0}.viewer-empty{position:absolute;inset:auto 14px 14px 14px;z-index:2;display:flex;justify-content:space-between;gap:10px;align-items:end;pointer-events:none}.hint{background:rgba(12,30,29,.82);color:white;padding:10px 13px;border-radius:12px;font-size:11px;line-height:1.5;max-width:250px;backdrop-filter:blur(8px)}.scene-nav{display:flex;gap:7px;pointer-events:auto}.round-btn{width:40px;height:40px;border:0;border-radius:50%;background:var(--green);font-weight:900;font-size:18px;color:var(--ink)}.viewer-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}.viewer-foot span:first-child{font-weight:750;color:var(--ink)}
+.side-card{padding:22px;display:flex;flex-direction:column;gap:17px}.section-kicker{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.16em;color:#58705e}.side-card h2{font-size:28px;letter-spacing:-.055em;line-height:1.05;margin:7px 0 8px}.side-card p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}.pill-row{display:flex;gap:7px;flex-wrap:wrap}.pill{border:1px solid var(--line);border-radius:999px;padding:7px 10px;font-size:10px;font-weight:800}.divider{height:1px;background:var(--line)}.point-list{display:grid;gap:8px}.point{width:100%;text-align:left;display:flex;align-items:center;gap:11px;padding:11px;border:1px solid var(--line);border-radius:13px;background:transparent;color:var(--ink)}.point.active{background:#edf3e6;border-color:#c5d7b6}.point-num{width:29px;height:29px;border-radius:50%;background:var(--green);display:grid;place-items:center;font-size:12px;font-weight:900;flex:none}.point strong{display:block;font-size:12px}.point small{display:block;color:var(--muted);font-size:10px;margin-top:3px}.side-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.side-actions .btn{border-radius:12px;padding:12px 8px}.notice{font-size:11px!important;padding:11px 12px;background:#f4eee2;border-radius:12px}
+.below{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px}.feature{padding:18px;border:1px solid var(--line);border-radius:17px;background:rgba(255,253,247,.6)}.feature .icon{font-size:21px;margin-bottom:13px}.feature strong{display:block;font-size:13px;margin-bottom:6px}.feature p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
+.modal-backdrop{position:fixed;inset:0;background:rgba(7,22,20,.55);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{max-width:510px;width:100%;background:var(--paper);border-radius:20px;padding:25px;box-shadow:0 24px 80px #0004}.modal h2{font-size:27px;letter-spacing:-.05em;margin:10px 0}.modal p{font-size:14px;line-height:1.7;color:var(--muted)}.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
+footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.scene-wrap{height:55vw;min-height:330px}.below{grid-template-columns:1fr}.hero-note{max-width:600px}.side-card{padding:19px}}
+@media(max-width:520px){.topbar{height:62px;padding:0 14px}.brand{font-size:14px}.brand-mark{width:30px;height:30px}.top-actions .btn{padding:8px 10px;font-size:11px}.top-actions .hide-mobile{display:none}main{padding:20px 13px}.hero h1{font-size:45px}.scene-wrap{height:68vh;min-height:360px}.viewer-empty{align-items:end}.hint{max-width:195px}.viewer-foot{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><div class="brand-mark">↗</div><div>RUTAS 360<small>Patrimonio · Cultura · Aula</small></div></div>
+  <div class="top-actions"><button class="btn hide-mobile" id="aboutBtn">Cómo funciona</button><button class="btn primary" id="vrBtn">◉ Entrar en VR</button></div>
+</header>
+<main>
+  <section class="hero">
+    <div><div class="eyebrow">Una nueva forma de descubrir lugares</div><h1>Viaja con la mirada.<br>Aprende desde dentro.</h1><p>Una guía de turismo inmersivo creada con fotografías 360°. Explora espacios, escucha historias y descubre el patrimonio a tu ritmo, desde el ordenador o con gafas de realidad virtual.</p></div>
+    <div class="hero-note"><strong>Prototipo funcional · versión 0.1</strong>Las escenas actuales son panorámicas de demostración. Se sustituirán por fotografías propias de Insta360 cuando estén disponibles.</div>
+  </section>
+  <section class="workspace">
+    <article class="viewer-card">
+      <div class="viewer-head"><strong id="sceneCounter">01 / 03 · Mirador de bienvenida</strong><span class="live-tag">Visita 360°</span></div>
+      <div class="scene-wrap">
+        <a-scene id="tourScene" embedded vr-mode-ui="enabled: false" loading-screen="enabled: false" renderer="colorManagement: true; antialias: true" device-orientation-permission-ui="enabled: true">
+          <a-assets timeout="15000">
+            <img id="pano0" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+            <img id="pano1" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
+            <img id="pano2" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/london.jpg">
+          </a-assets>
+          <a-sky id="panorama" src="#pano0" rotation="0 -90 0" material="shader: flat"></a-sky>
+          <a-entity id="hotspots">
+            <a-entity id="hotspot-next" class="clickable" position="0 1.1 -3" geometry="primitive: circle; radius: 0.22" material="color: #c5e2a4; shader: flat; side: double" text="value: SIGUIENTE; align: center; color: #142927; width: 2.7; side: double"></a-entity>
+            <a-entity id="hotspot-info" class="clickable" position="-1.15 0.8 -2.7" geometry="primitive: ring; radiusInner: 0.16; radiusOuter: 0.22" material="color: #df704c; shader: flat; side: double" text="value: INFO; align: center; color: white; width: 1.8; side: double"></a-entity>
+          </a-entity>
+          <a-entity camera look-controls wasd-controls="enabled: true" position="0 0 0">
+            <a-cursor id="gazeCursor" fuse="true" fuse-timeout="1200" raycaster="objects: .clickable" material="color: #df704c; shader: flat" geometry="primitive: ring; radiusInner: 0.008; radiusOuter: 0.013" position="0 0 -1"></a-cursor>
+          </a-entity>
+        </a-scene>
+        <div class="viewer-empty"><div class="hint">Arrastra para mirar alrededor.<br>En VR, apunta con la mirada y espera o selecciona con el mando.</div><div class="scene-nav"><button class="round-btn" id="prevBtn" aria-label="Escena anterior">←</button><button class="round-btn" id="nextBtn" aria-label="Escena siguiente">→</button></div></div>
+      </div>
+      <div class="viewer-foot"><span id="scenePlace">📍 Escena de bienvenida</span><span>Compatible con pantalla táctil y ratón · VR según dispositivo/navegador</span></div>
+    </article>
+    <aside class="side-card">
+      <div><div class="section-kicker">Estás explorando</div><h2 id="sceneTitle">Mirador de bienvenida</h2><p id="sceneDescription">Detente un momento, mira alrededor y acostúmbrate a explorar el espacio en todas las direcciones. Esta escena es una panorámica de muestra.</p></div>
+      <div class="pill-row"><span class="pill" id="sceneCategory">INTRODUCCIÓN</span><span class="pill">360°</span><span class="pill">AUDIOGUÍA</span></div>
+      <div class="divider"></div><div class="section-kicker">Puntos de la ruta</div>
+      <div class="point-list" id="pointList">
+        <button class="point active" data-scene="0"><span class="point-num">01</span><span><strong>Mirador de bienvenida</strong><small>Aprende a orientarte</small></span></button>
+        <button class="point" data-scene="1"><span class="point-num">02</span><span><strong>La ciudad y sus huellas</strong><small>Observa el paisaje urbano</small></span></button>
+        <button class="point" data-scene="2"><span class="point-num">03</span><span><strong>Un paseo entre historias</strong><small>Descubre detalles del entorno</small></span></button>
+      </div>
+      <div class="side-actions"><button class="btn" id="audioBtn">▶ Escuchar guía</button><button class="btn" id="infoBtn">Leer historia</button></div>
+      <p class="notice" id="audioStatus">La audioguía utiliza voz del navegador en esta demo. Después podrás usar tus propios audios grabados.</p>
+    </aside>
+  </section>
+  <section class="below">
+    <article class="feature"><div class="icon">◉</div><strong>Inmersión real</strong><p>Entra en el modo VR desde un navegador compatible. La compatibilidad final se comprobará cuando sepamos el modelo de gafas.</p></article>
+    <article class="feature"><div class="icon">⌖</div><strong>Aprender explorando</strong><p>Las paradas pueden incluir datos históricos, preguntas, vocabulario y pequeñas misiones para visitas escolares.</p></article>
+    <article class="feature"><div class="icon">↗</div><strong>Crece con tus fotografías</strong><p>La guía se publica en GitHub Pages. Cada nueva panorámica puede añadirse como una parada sin rehacer la web.</p></article>
+  </section>
+</main>
+<footer><span>Rutas 360 · Prototipo abierto para turismo y educación</span><span>Las panorámicas de demostración no representan todavía un destino turístico real.</span></footer>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="eyebrow" id="modalKicker">Punto de interés</div><h2 id="modalTitle">Una mirada diferente</h2><p id="modalText"></p><div class="modal-actions"><button class="btn primary" id="modalAudio">▶ Escuchar</button><button class="btn" id="modalClose">Volver a la visita</button></div></div></div>
+<script>
+const stops = [
+ {title:"Mirador de bienvenida",place:"Escena de bienvenida",category:"INTRODUCCIÓN",description:"Detente un momento, mira alrededor y acostúmbrate a explorar el espacio en todas las direcciones. Esta escena es una panorámica de muestra.",story:"Bienvenido a Rutas 360. En una visita inmersiva, la fotografía panorámica envuelve tu campo visual. Gira lentamente y busca tres detalles que no habías visto al principio. Cuando incorporemos fotografías propias, esta parada será el inicio de una ruta turística real.",curiosity:"Reto de observación: encuentra tres detalles del entorno antes de continuar.",image:"#pano0",rotation:"0 -90 0"},
+ {title:"La ciudad y sus huellas",place:"Paisaje urbano de demostración",category:"PATRIMONIO",description:"Observa cómo los edificios, las calles y los espacios compartidos cuentan historias sobre la forma de vivir de una comunidad.",story:"Las ciudades conservan huellas de distintas épocas. En una ruta real podemos explicar cómo evolucionó el trazado urbano, qué materiales se utilizaron y cómo se relacionan los edificios con la vida cotidiana. Esta escena utiliza una imagen genérica de demostración, no una localización identificada.",curiosity:"Reto educativo: identifica un elemento natural y dos elementos construidos.",image:"#pano1",rotation:"0 0 0"},
+ {title:"Un paseo entre historias",place:"Panorámica de demostración",category:"OBSERVACIÓN",description:"Explora el entorno y elige un detalle que te gustaría investigar: arquitectura, transporte, naturaleza o vida cotidiana.",story:"Una audioguía no tiene por qué limitarse a ofrecer fechas. También puede plantear preguntas, relacionar el lugar con su entorno y ayudarte a observar de otra manera. En una visita educativa, el alumnado puede recoger evidencias, comparar puntos de vista y crear su propia explicación del lugar.",curiosity:"Reto: formula una pregunta que harías a una persona que conociera bien este lugar.",image:"#pano2",rotation:"0 0 0"}
+];
+let current=0;
+const $=id=>document.getElementById(id);
+function stopSpeech(){if("speechSynthesis"in window)window.speechSynthesis.cancel();$("audioBtn").textContent="▶ Escuchar guía"}
+function speak(text){if(!("speechSynthesis"in window)){$("audioStatus").textContent="Este navegador no ofrece síntesis de voz. Podremos incorporar un archivo de audio grabado.";return}stopSpeech();const utterance=new SpeechSynthesisUtterance(text);utterance.lang="es-ES";utterance.rate=.92;utterance.onend=()=>{$("audioBtn").textContent="▶ Escuchar guía";$("audioStatus").textContent="Audioguía finalizada. Puedes seguir explorando."};window.speechSynthesis.speak(utterance);$("audioBtn").textContent="Ⅱ Reproduciendo";$("audioStatus").textContent="Reproduciendo explicación de esta parada."}
+function updateScene(index){current=(index+stops.length)%stops.length;const s=stops[current];$("panorama").setAttribute("src",s.image);$("panorama").setAttribute("rotation",s.rotation);$("sceneCounter").textContent=String(current+1).padStart(2,"0")+" / "+String(stops.length).padStart(2,"0")+" · "+s.title;$("sceneTitle").textContent=s.title;$("scenePlace").textContent="📍 "+s.place;$("sceneDescription").textContent=s.description;$("sceneCategory").textContent=s.category;document.querySelectorAll(".point").forEach((b,i)=>b.classList.toggle("active",i===current));stopSpeech();$("audioStatus").textContent="Listo para escuchar la explicación de esta parada."}
+function showInfo(){const s=stops[current];$("modalKicker").textContent=s.category;$("modalTitle").textContent=s.title;$("modalText").textContent=s.story+" "+s.curiosity;$("modalBackdrop").classList.add("open")}
+$("prevBtn").addEventListener("click",()=>updateScene(current-1));$("nextBtn").addEventListener("click",()=>updateScene(current+1));
+document.querySelectorAll(".point").forEach(b=>b.addEventListener("click",()=>updateScene(Number(b.dataset.scene))));
+$("infoBtn").addEventListener("click",showInfo);$("modalClose").addEventListener("click",()=>$("modalBackdrop").classList.remove("open"));$("modalAudio").addEventListener("click",()=>speak(stops[current].story));
+$("audioBtn").addEventListener("click",()=>{if("speechSynthesis"in window&&window.speechSynthesis.speaking){stopSpeech()}else{speak(stops[current].story+" "+stops[current].curiosity)}});
+$("aboutBtn").addEventListener("click",()=>{$("modalKicker").textContent="Cómo funciona";$("modalTitle").textContent="Una guía que puedes ampliar";$("modalText").textContent="Esta primera versión combina fotografías panorámicas, puntos de navegación y fichas de interpretación. Para incorporar tus fotos Insta360, exporta cada ubicación como JPG equirectangular 2:1, añade el archivo al repositorio y actualiza la lista de paradas en el código. La entrada en VR requiere HTTPS y un navegador/dispositivo compatible.";$("modalBackdrop").classList.add("open")});
+$("vrBtn").addEventListener("click",async()=>{const scene=$("tourScene");try{if(!scene.is("vr-mode")){await scene.enterVR()}else{scene.exitVR()}}catch(e){$("audioStatus").textContent="No se ha podido activar VR en este navegador. Prueba desde el navegador de las gafas, con la web publicada en HTTPS."}});
+$("hotspot-next").addEventListener("click",()=>updateScene(current+1));$("hotspot-info").addEventListener("click",showInfo);
+$("tourScene").addEventListener("enter-vr",()=>{$("vrBtn").textContent="Salir de VR";$("audioStatus").textContent="Modo VR activo. Apunta a los puntos y selecciónalos con la mirada o el mando."});
+$("tourScene").addEventListener("exit-vr",()=>{$("vrBtn").textContent="◉ Entrar en VR"});
+$("modalBackdrop").addEventListener("click",e=>{if(e.target===$("modalBackdrop"))$("modalBackdrop").classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")$("modalBackdrop").classList.remove("open");if(e.key==="ArrowRight")updateScene(current+1);if(e.key==="ArrowLeft")updateScene(current-1)});
+updateScene(0);
+</script>
+</body></html>
