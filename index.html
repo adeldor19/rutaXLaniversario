@@ -23,7 +23,7 @@ footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:va
 
 /* Vista inmersiva móvil para teléfonos con visor Cardboard */
 body.phone-immersive{overflow:hidden}
-body.phone-immersive .scene-wrap{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;z-index:9999!important;border-radius:0!important;background:#000}
+body.phone-immersive #exitImmersiveBtn{display:block!important}body.phone-immersive .scene-wrap{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;z-index:9999!important;border-radius:0!important;background:#000}
 body.phone-immersive .scene-wrap a-scene{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
 body.phone-immersive .viewer-empty{bottom:12px;left:12px;right:12px}
 body.phone-immersive .hint{max-width:190px}
@@ -63,7 +63,7 @@ body.phone-immersive .round-btn{width:44px;height:44px}
             <a-cursor id="gazeCursor" fuse="true" fuse-timeout="1200" raycaster="objects: .clickable" material="color: #df704c; shader: flat" geometry="primitive: ring; radiusInner: 0.008; radiusOuter: 0.013" position="0 0 -1"></a-cursor>
           </a-entity>
         </a-scene>
-        <div class="viewer-empty"><div class="hint">Arrastra para mirar alrededor.<br>En VR, apunta con la mirada y espera o selecciona con el mando.</div><div class="scene-nav"><button class="round-btn" id="prevBtn" aria-label="Escena anterior">←</button><button class="round-btn" id="nextBtn" aria-label="Escena siguiente">→</button></div></div>
+        <button class="btn" id="exitImmersiveBtn" style="display:none;position:absolute;top:12px;right:12px;z-index:5;background:#fffdf7">Salir de VR ✕</button><div class="viewer-empty"><div class="hint">Arrastra para mirar alrededor.<br>En VR, apunta con la mirada y espera o selecciona con el mando.</div><div class="scene-nav"><button class="round-btn" id="prevBtn" aria-label="Escena anterior">←</button><button class="round-btn" id="nextBtn" aria-label="Escena siguiente">→</button></div></div>
       </div>
       <div class="viewer-foot"><span id="scenePlace">📍 Escena de bienvenida</span><span>Compatible con pantalla táctil y ratón · VR según dispositivo/navegador</span></div>
     </article>
@@ -108,30 +108,38 @@ $("aboutBtn").addEventListener("click",()=>{$("modalKicker").textContent="Cómo 
 async function openMobileImmersive(){
   const wrap=document.querySelector(".scene-wrap");
   document.body.classList.add("phone-immersive");
-  $("vrBtn").textContent="Salir de pantalla completa";
+  $("vrBtn").textContent="Salir de pantalla completa";$("exitImmersiveBtn").style.display="block";
   $("audioStatus").textContent="Vista inmersiva móvil activa. Coloca el teléfono en el visor y mueve la cabeza para mirar alrededor. Esta vista de compatibilidad no garantiza imagen estereoscópica.";
   try{if(!document.fullscreenElement&&wrap.requestFullscreen)await wrap.requestFullscreen()}catch(e){}
   try{if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock("landscape")}catch(e){}
 }
 async function closeMobileImmersive(){
   document.body.classList.remove("phone-immersive");
-  $("vrBtn").textContent="◉ Entrar en VR";
+  $("vrBtn").textContent="◉ Entrar en VR";$("exitImmersiveBtn").style.display="none";
   try{if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen()}catch(e){}
   try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock()}catch(e){}
+}
+function isIOSDevice(){
+  return /iPhone|iPad|iPod/i.test(navigator.userAgent) ||
+    (navigator.platform==="MacIntel" && navigator.maxTouchPoints>1);
 }
 $("vrBtn").addEventListener("click",async()=>{
   const scene=$("tourScene");
   if(scene.is("vr-mode")){scene.exitVR();return}
   if(document.body.classList.contains("phone-immersive")){await closeMobileImmersive();return}
+  // iOS Safari no ofrece el mismo soporte WebXR que los navegadores Android compatibles.
+  // En iPhone, entra directamente en la vista ampliada de compatibilidad.
+  if(isIOSDevice()){await openMobileImmersive();return}
   try{
     await scene.enterVR();
     if(!scene.is("vr-mode"))await openMobileImmersive();
   }catch(e){await openMobileImmersive()}
 });
+$("exitImmersiveBtn").addEventListener("click",async()=>{await closeMobileImmersive()});
 document.addEventListener("fullscreenchange",()=>{
   if(!document.fullscreenElement&&document.body.classList.contains("phone-immersive")){
     document.body.classList.remove("phone-immersive");
-    $("vrBtn").textContent="◉ Entrar en VR";
+    $("vrBtn").textContent="◉ Entrar en VR";$("exitImmersiveBtn").style.display="none";
   }
 });
 $("hotspot-next").addEventListener("click",()=>updateScene(current+1));$("hotspot-info").addEventListener("click",showInfo);
