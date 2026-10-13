@@ -32,7 +32,7 @@ footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:va
 <main>
   <section class="hero">
     <div><div class="eyebrow">Una nueva forma de descubrir lugares</div><h1>Viaja con la mirada.<br>Aprende desde dentro.</h1><p>Una guía de turismo inmersivo creada con fotografías 360°. Explora espacios, escucha historias y descubre el patrimonio a tu ritmo, desde el ordenador o con gafas de realidad virtual.</p></div>
-    <div class="hero-note"><strong>Prototipo funcional · versión 0.1</strong>Las escenas actuales son panorámicas de demostración. Se sustituirán por fotografías propias de Insta360 cuando estén disponibles.</div>
+    <div class="hero-note"><strong>Prototipo funcional · versión 0.1</strong>La primera escena ya utiliza prueba.jpg, subida al repositorio para comprobar la integración. Las otras dos escenas siguen siendo de demostración.</div>
   </section>
   <section class="workspace">
     <article class="viewer-card">
@@ -40,7 +40,7 @@ footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:va
       <div class="scene-wrap">
         <a-scene id="tourScene" embedded vr-mode-ui="enabled: false" loading-screen="enabled: false" renderer="colorManagement: true; antialias: true" device-orientation-permission-ui="enabled: true">
           <a-assets timeout="15000">
-            <img id="pano0" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+            <img id="pano0" crossorigin="anonymous" src="prueba.jpg">
             <img id="pano1" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg">
             <img id="pano2" crossorigin="anonymous" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/london.jpg">
           </a-assets>
@@ -58,7 +58,7 @@ footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:va
       <div class="viewer-foot"><span id="scenePlace">📍 Escena de bienvenida</span><span>Compatible con pantalla táctil y ratón · VR según dispositivo/navegador</span></div>
     </article>
     <aside class="side-card">
-      <div><div class="section-kicker">Estás explorando</div><h2 id="sceneTitle">Mirador de bienvenida</h2><p id="sceneDescription">Detente un momento, mira alrededor y acostúmbrate a explorar el espacio en todas las direcciones. Esta escena es una panorámica de muestra.</p></div>
+      <div><div class="section-kicker">Estás explorando</div><h2 id="sceneTitle">Mirador de bienvenida</h2><p id="sceneDescription">Esta primera escena utiliza el archivo prueba.jpg subido al repositorio. Si la imagen no es panorámica equirectangular de 360° (proporción 2:1), puede verse estirada o deformada en el visor.</p></div>
       <div class="pill-row"><span class="pill" id="sceneCategory">INTRODUCCIÓN</span><span class="pill">360°</span><span class="pill">AUDIOGUÍA</span></div>
       <div class="divider"></div><div class="section-kicker">Puntos de la ruta</div>
       <div class="point-list" id="pointList">
@@ -80,7 +80,7 @@ footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:va
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="eyebrow" id="modalKicker">Punto de interés</div><h2 id="modalTitle">Una mirada diferente</h2><p id="modalText"></p><div class="modal-actions"><button class="btn primary" id="modalAudio">▶ Escuchar</button><button class="btn" id="modalClose">Volver a la visita</button></div></div></div>
 <script>
 const stops = [
- {title:"Mirador de bienvenida",place:"Escena de bienvenida",category:"INTRODUCCIÓN",description:"Detente un momento, mira alrededor y acostúmbrate a explorar el espacio en todas las direcciones. Esta escena es una panorámica de muestra.",story:"Bienvenido a Rutas 360. En una visita inmersiva, la fotografía panorámica envuelve tu campo visual. Gira lentamente y busca tres detalles que no habías visto al principio. Cuando incorporemos fotografías propias, esta parada será el inicio de una ruta turística real.",curiosity:"Reto de observación: encuentra tres detalles del entorno antes de continuar.",image:"#pano0",rotation:"0 -90 0"},
+ {title:"Mirador de bienvenida",place:"Escena de bienvenida",category:"INTRODUCCIÓN",description:"Detente un momento, mira alrededor y acostúmbrate a explorar el espacio en todas las direcciones. Esta escena es una panorámica de muestra.",story:"Esta parada carga el archivo prueba.jpg desde el repositorio. Para comprobar una experiencia 360° completa, la imagen debe ser una panorámica equirectangular de 360°, preferiblemente con proporción 2:1. Si es una foto normal, aparecerá deformada al proyectarla sobre la esfera.",curiosity:"Reto de observación: encuentra tres detalles del entorno antes de continuar.",image:"#pano0",rotation:"0 -90 0"},
  {title:"La ciudad y sus huellas",place:"Paisaje urbano de demostración",category:"PATRIMONIO",description:"Observa cómo los edificios, las calles y los espacios compartidos cuentan historias sobre la forma de vivir de una comunidad.",story:"Las ciudades conservan huellas de distintas épocas. En una ruta real podemos explicar cómo evolucionó el trazado urbano, qué materiales se utilizaron y cómo se relacionan los edificios con la vida cotidiana. Esta escena utiliza una imagen genérica de demostración, no una localización identificada.",curiosity:"Reto educativo: identifica un elemento natural y dos elementos construidos.",image:"#pano1",rotation:"0 0 0"},
  {title:"Un paseo entre historias",place:"Panorámica de demostración",category:"OBSERVACIÓN",description:"Explora el entorno y elige un detalle que te gustaría investigar: arquitectura, transporte, naturaleza o vida cotidiana.",story:"Una audioguía no tiene por qué limitarse a ofrecer fechas. También puede plantear preguntas, relacionar el lugar con su entorno y ayudarte a observar de otra manera. En una visita educativa, el alumnado puede recoger evidencias, comparar puntos de vista y crear su propia explicación del lugar.",curiosity:"Reto: formula una pregunta que harías a una persona que conociera bien este lugar.",image:"#pano2",rotation:"0 0 0"}
 ];
