@@ -20,6 +20,16 @@ main{max-width:1400px;margin:auto;padding:clamp(20px,4vw,52px)}.eyebrow{font-siz
 .below{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:18px}.feature{padding:18px;border:1px solid var(--line);border-radius:17px;background:rgba(255,253,247,.6)}.feature .icon{font-size:21px;margin-bottom:13px}.feature strong{display:block;font-size:13px;margin-bottom:6px}.feature p{font-size:12px;line-height:1.6;color:var(--muted);margin:0}
 .modal-backdrop{position:fixed;inset:0;background:rgba(7,22,20,.55);z-index:20;display:none;align-items:center;justify-content:center;padding:20px}.modal-backdrop.open{display:flex}.modal{max-width:510px;width:100%;background:var(--paper);border-radius:20px;padding:25px;box-shadow:0 24px 80px #0004}.modal h2{font-size:27px;letter-spacing:-.05em;margin:10px 0}.modal p{font-size:14px;line-height:1.7;color:var(--muted)}.modal-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}
 footer{max-width:1400px;margin:auto;padding:0 clamp(20px,4vw,52px) 30px;color:var(--muted);font-size:11px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+
+/* Vista inmersiva móvil para teléfonos con visor Cardboard */
+body.phone-immersive{overflow:hidden}
+body.phone-immersive .scene-wrap{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;height:100dvh!important;min-height:0!important;z-index:9999!important;border-radius:0!important;background:#000}
+body.phone-immersive .scene-wrap a-scene{position:absolute!important;inset:0!important;width:100%!important;height:100%!important}
+body.phone-immersive .viewer-empty{bottom:12px;left:12px;right:12px}
+body.phone-immersive .hint{max-width:190px}
+body.phone-immersive .viewer-empty .scene-nav{gap:6px}
+body.phone-immersive .round-btn{width:44px;height:44px}
+
 @media(max-width:900px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.scene-wrap{height:55vw;min-height:330px}.below{grid-template-columns:1fr}.hero-note{max-width:600px}.side-card{padding:19px}}
 @media(max-width:520px){.topbar{height:62px;padding:0 14px}.brand{font-size:14px}.brand-mark{width:30px;height:30px}.top-actions .btn{padding:8px 10px;font-size:11px}.top-actions .hide-mobile{display:none}main{padding:20px 13px}.hero h1{font-size:45px}.scene-wrap{height:68vh;min-height:360px}.viewer-empty{align-items:end}.hint{max-width:195px}.viewer-foot{align-items:flex-start;flex-direction:column}}
 </style>
@@ -95,10 +105,38 @@ document.querySelectorAll(".point").forEach(b=>b.addEventListener("click",()=>up
 $("infoBtn").addEventListener("click",showInfo);$("modalClose").addEventListener("click",()=>$("modalBackdrop").classList.remove("open"));$("modalAudio").addEventListener("click",()=>speak(stops[current].story));
 $("audioBtn").addEventListener("click",()=>{if("speechSynthesis"in window&&window.speechSynthesis.speaking){stopSpeech()}else{speak(stops[current].story+" "+stops[current].curiosity)}});
 $("aboutBtn").addEventListener("click",()=>{$("modalKicker").textContent="Cómo funciona";$("modalTitle").textContent="Una guía que puedes ampliar";$("modalText").textContent="Esta primera versión combina fotografías panorámicas, puntos de navegación y fichas de interpretación. Para incorporar tus fotos Insta360, exporta cada ubicación como JPG equirectangular 2:1, añade el archivo al repositorio y actualiza la lista de paradas en el código. La entrada en VR requiere HTTPS y un navegador/dispositivo compatible.";$("modalBackdrop").classList.add("open")});
-$("vrBtn").addEventListener("click",async()=>{const scene=$("tourScene");try{if(!scene.is("vr-mode")){await scene.enterVR()}else{scene.exitVR()}}catch(e){$("audioStatus").textContent="No se ha podido activar VR en este navegador. Prueba desde el navegador de las gafas, con la web publicada en HTTPS."}});
+async function openMobileImmersive(){
+  const wrap=document.querySelector(".scene-wrap");
+  document.body.classList.add("phone-immersive");
+  $("vrBtn").textContent="Salir de pantalla completa";
+  $("audioStatus").textContent="Vista inmersiva móvil activa. Coloca el teléfono en el visor y mueve la cabeza para mirar alrededor. Esta vista de compatibilidad no garantiza imagen estereoscópica.";
+  try{if(!document.fullscreenElement&&wrap.requestFullscreen)await wrap.requestFullscreen()}catch(e){}
+  try{if(screen.orientation&&screen.orientation.lock)await screen.orientation.lock("landscape")}catch(e){}
+}
+async function closeMobileImmersive(){
+  document.body.classList.remove("phone-immersive");
+  $("vrBtn").textContent="◉ Entrar en VR";
+  try{if(document.fullscreenElement&&document.exitFullscreen)await document.exitFullscreen()}catch(e){}
+  try{if(screen.orientation&&screen.orientation.unlock)screen.orientation.unlock()}catch(e){}
+}
+$("vrBtn").addEventListener("click",async()=>{
+  const scene=$("tourScene");
+  if(scene.is("vr-mode")){scene.exitVR();return}
+  if(document.body.classList.contains("phone-immersive")){await closeMobileImmersive();return}
+  try{
+    await scene.enterVR();
+    if(!scene.is("vr-mode"))await openMobileImmersive();
+  }catch(e){await openMobileImmersive()}
+});
+document.addEventListener("fullscreenchange",()=>{
+  if(!document.fullscreenElement&&document.body.classList.contains("phone-immersive")){
+    document.body.classList.remove("phone-immersive");
+    $("vrBtn").textContent="◉ Entrar en VR";
+  }
+});
 $("hotspot-next").addEventListener("click",()=>updateScene(current+1));$("hotspot-info").addEventListener("click",showInfo);
 $("tourScene").addEventListener("enter-vr",()=>{$("vrBtn").textContent="Salir de VR";$("audioStatus").textContent="Modo VR activo. Apunta a los puntos y selecciónalos con la mirada o el mando."});
-$("tourScene").addEventListener("exit-vr",()=>{$("vrBtn").textContent="◉ Entrar en VR"});
+$("tourScene").addEventListener("exit-vr",()=>{$("vrBtn").textContent="◉ Entrar en VR";if(!document.fullscreenElement)document.body.classList.remove("phone-immersive")});
 $("modalBackdrop").addEventListener("click",e=>{if(e.target===$("modalBackdrop"))$("modalBackdrop").classList.remove("open")});
 document.addEventListener("keydown",e=>{if(e.key==="Escape")$("modalBackdrop").classList.remove("open");if(e.key==="ArrowRight")updateScene(current+1);if(e.key==="ArrowLeft")updateScene(current-1)});
 updateScene(0);
