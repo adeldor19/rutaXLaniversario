@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#102b2b">
-<title>Rutas 360 · Guía inmersiva</title>
+<meta name="theme-color" content="#641c32">
+<title>IES Andrés Benítez · Rutas 360</title>
 <meta name="description" content="Guía turística y educativa inmersiva con fotografías panorámicas 360°.">
 <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
 <style>
@@ -32,21 +32,55 @@ body.phone-immersive .round-btn{width:44px;height:44px}
 
 @media(max-width:900px){.hero{grid-template-columns:1fr}.workspace{grid-template-columns:1fr}.scene-wrap{height:55vw;min-height:330px}.below{grid-template-columns:1fr}.hero-note{max-width:600px}.side-card{padding:19px}}
 @media(max-width:520px){.topbar{height:62px;padding:0 14px}.brand{font-size:14px}.brand-mark{width:30px;height:30px}.top-actions .btn{padding:8px 10px;font-size:11px}.top-actions .hide-mobile{display:none}main{padding:20px 13px}.hero h1{font-size:45px}.scene-wrap{height:68vh;min-height:360px}.viewer-empty{align-items:end}.hint{max-width:195px}.viewer-foot{align-items:flex-start;flex-direction:column}}
+
+/* Identidad visual institucional: beige cálido y burdeos */
+:root{--ink:#4f172b;--muted:#76635f;--paper:#f4ead9;--green:#ead2b0;--accent:#8c3048;--line:rgba(79,23,43,.18)}
+html,body{background:#f4ead9;color:#3f2029}
+.topbar{background:rgba(250,243,231,.97);border-bottom:1px solid rgba(79,23,43,.16);box-shadow:0 4px 18px rgba(79,23,43,.05)}
+.brand{letter-spacing:-.025em;color:#641c32}.brand-mark{background:#641c32;color:#f8eddd;border-radius:10px;font-family:Georgia,serif;font-size:15px;letter-spacing:-.05em}
+.brand small{color:#8c5965;letter-spacing:.11em}
+.btn{border-color:rgba(100,28,50,.28);color:#641c32;background:#fff8ee}
+.btn.primary{background:#641c32;color:#fff5e8;border-color:#641c32}
+main{max-width:1500px}
+.eyebrow,.section-kicker{color:#8b3c50}
+.hero h1,.side-card h2{font-family:Georgia,"Times New Roman",serif;color:#641c32;letter-spacing:-.045em}
+.hero p,.hero-note,.side-card p{color:#76635f}
+.hero-note{border-left-color:#8c3048;background:rgba(255,248,238,.48);padding:13px 15px;border-radius:0 12px 12px 0}
+.viewer-card,.side-card{background:#fff9ef;border-color:rgba(100,28,50,.18);box-shadow:0 8px 28px rgba(79,23,43,.06)}
+.viewer-head,.viewer-foot{border-color:rgba(100,28,50,.14)}
+.live-tag{background:#ead6bd;color:#641c32}
+.scene-wrap{background:#4f172b}
+.hint{background:rgba(79,23,43,.88)}
+.round-btn{background:#641c32;color:#fff5e8;border:1px solid rgba(255,255,255,.55)}
+.point{border-color:rgba(100,28,50,.17);color:#4f172b}
+.point.active{background:#f1e0cc;border-color:#b77c8b}
+.point-num{background:#ead2b0;color:#641c32}
+.pill{border-color:rgba(100,28,50,.2);color:#641c32;background:#fff5e8}
+.notice{background:#f2e3cf;color:#6f4a4f}
+.feature{background:rgba(255,249,239,.78);border-color:rgba(100,28,50,.16)}
+.feature .icon{color:#8c3048}
+.modal{background:#fbf1e2;color:#4f172b}
+.modal p{color:#76635f}
+footer{color:#806b66}
+footer span:first-child{font-weight:800;color:#641c32}
+body.phone-immersive .scene-wrap{background:#000}
+@media(max-width:520px){.brand small{font-size:8px;letter-spacing:.06em}.hero h1{font-size:42px}}
+
 </style>
 </head>
 <body>
 <header class="topbar">
-  <div class="brand"><div class="brand-mark">↗</div><div>RUTAS 360<small>Patrimonio · Cultura · Aula</small></div></div>
-  <div class="top-actions"><button class="btn hide-mobile" id="aboutBtn">Cómo funciona</button><button class="btn primary" id="vrBtn">◉ Entrar en VR</button></div>
+  <div class="brand"><div class="brand-mark">AB</div><div>IES ANDRÉS BENÍTEZ<small>RUTAS 360 · PATRIMONIO Y APRENDIZAJE</small></div></div>
+  <div class="top-actions"><button class="btn hide-mobile" id="aboutBtn">Sobre el proyecto</button><button class="btn primary" id="vrBtn">◉ Modo inmersivo</button></div>
 </header>
 <main>
   <section class="hero">
-    <div><div class="eyebrow">Una nueva forma de descubrir lugares</div><h1>Viaja con la mirada.<br>Aprende desde dentro.</h1><p>Una guía de turismo inmersivo creada con fotografías 360°. Explora espacios, escucha historias y descubre el patrimonio a tu ritmo, desde el ordenador o con gafas de realidad virtual.</p></div>
+    <div><div class="eyebrow">Proyecto educativo · Innovación y patrimonio</div><h1>El instituto,<br>desde otra perspectiva.</h1><p>Una propuesta de visita inmersiva para descubrir espacios, historias y patrimonio a través de fotografías 360°. Un proyecto del IES Andrés Benítez que conecta tecnología, cultura y aprendizaje.</p></div>
     <div class="hero-note"><strong>Prototipo funcional · versión 0.1</strong>La primera escena ya utiliza prueba.jpg, subida al repositorio para comprobar la integración. Las otras dos escenas siguen siendo de demostración.</div>
   </section>
   <section class="workspace">
     <article class="viewer-card">
-      <div class="viewer-head"><strong id="sceneCounter">01 / 03 · Mirador de bienvenida</strong><span class="live-tag">Visita 360°</span></div>
+      <div class="viewer-head"><strong id="sceneCounter">01 / 03 · Mirador de bienvenida</strong><span class="live-tag">Versión de demostración</span></div>
       <div class="scene-wrap">
         <a-scene id="tourScene" embedded vr-mode-ui="enabled: false" loading-screen="enabled: false" renderer="colorManagement: true; antialias: true" device-orientation-permission-ui="enabled: true">
           <a-assets timeout="15000">
@@ -86,7 +120,7 @@ body.phone-immersive .round-btn{width:44px;height:44px}
     <article class="feature"><div class="icon">↗</div><strong>Crece con tus fotografías</strong><p>La guía se publica en GitHub Pages. Cada nueva panorámica puede añadirse como una parada sin rehacer la web.</p></article>
   </section>
 </main>
-<footer><span>Rutas 360 · Prototipo abierto para turismo y educación</span><span>Las panorámicas de demostración no representan todavía un destino turístico real.</span></footer>
+<footer><span>IES Andrés Benítez · Proyecto Rutas 360</span><span>Prototipo en desarrollo · Contenidos e imágenes sujetos a revisión</span></footer>
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="eyebrow" id="modalKicker">Punto de interés</div><h2 id="modalTitle">Una mirada diferente</h2><p id="modalText"></p><div class="modal-actions"><button class="btn primary" id="modalAudio">▶ Escuchar</button><button class="btn" id="modalClose">Volver a la visita</button></div></div></div>
 <script>
 const stops = [
