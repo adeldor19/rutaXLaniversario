@@ -223,6 +223,12 @@ body.phone-immersive .scene-wrap{border-radius:0}
  .notice{font-size:11px!important}
 }
 
+
+/* Control de audio minimalista: solo botón Play */
+.audio-panel{display:flex;align-items:center;justify-content:center;min-height:62px;padding:10px}
+.audio-play{display:grid;place-items:center;width:44px;height:44px;margin:auto;border:0;border-radius:50%;background:#fff1df;color:#70162f;font-size:20px;line-height:1;padding-left:4px;flex:none}
+@media(max-width:600px){.audio-panel{min-height:58px;padding:8px}.audio-play{width:42px;height:42px;font-size:19px}}
+
 </style>
 </head>
 <body>
@@ -275,7 +281,7 @@ body.phone-immersive .scene-wrap{border-radius:0}
           <div class="side-photo-note">Imagen panorámica de demostración · pendiente de sustituir por fotografía definitiva.</div>
         </section>
         <section class="audio-panel">
-          <button class="audio-play" id="audioBtn" aria-label="Escuchar audioguía">▶</button>
+          <button class="audio-play" id="audioBtn" aria-label="Reproducir audioguía" title="Reproducir audioguía">▶</button>
           <div><strong>Audioguía</strong><small>Escucha la explicación de esta parada</small></div>
           <span aria-hidden="true">◖))</span>
         </section>
