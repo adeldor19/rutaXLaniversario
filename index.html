@@ -169,6 +169,60 @@ body.phone-immersive .scene-wrap{border-radius:0}
  .notice{font-size:11px!important;line-height:1.45}
 }
 
+
+/* Panel lateral reconstruido con estructura semántica y márgenes consistentes */
+.side-card{display:flex;flex-direction:column;min-width:0;padding:0;gap:0;overflow:hidden}
+.side-heading{flex:none}
+.side-inner{width:100%;min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:16px;padding:18px}
+.side-inner section,.side-inner .notice{width:100%;min-width:0;margin:0}
+.side-summary{display:flex;flex-direction:column;align-items:stretch;gap:9px}
+.side-summary .section-kicker{margin:0}
+.side-summary h2{margin:0;font-size:clamp(22px,2vw,28px);line-height:1.1;overflow-wrap:break-word}
+.side-summary p{margin:0;line-height:1.5;overflow-wrap:break-word}
+.side-summary .pill-row{margin-top:3px}
+.side-photo-note{margin-top:0;font-size:11px;line-height:1.45}
+.audio-panel{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:10px;width:100%;min-width:0;margin:0;padding:12px}
+.audio-panel div{min-width:0}
+.audio-panel small{line-height:1.4;white-space:normal;overflow-wrap:break-word}
+.challenge-section,.route-points-section{display:flex;flex-direction:column;gap:9px}
+.challenge-section>.section-kicker,.route-points-section>.section-kicker{margin:0}
+.challenge{width:100%;min-width:0;align-items:flex-start;margin:0;padding:13px;gap:11px}
+.challenge>div{min-width:0;flex:1}
+.challenge p{margin:6px 0 10px;line-height:1.45;overflow-wrap:break-word}
+.route-points-section .divider{width:100%;margin-bottom:2px}
+.point-list{width:100%;min-width:0;display:grid;gap:8px}
+.point{width:100%;min-width:0}
+.point>span:last-child{min-width:0;overflow-wrap:break-word}
+.notice{line-height:1.45;overflow-wrap:break-word}
+@media(max-width:1050px){
+ .workspace{grid-template-columns:minmax(0,1fr)}
+ .side-inner{padding:18px;gap:16px}
+ .side-summary h2{font-size:26px}
+}
+@media(max-width:600px){
+ main{padding:16px 12px}
+ .side-card{width:100%;border-radius:18px}
+ .side-heading{padding:13px 15px}
+ .side-inner{padding:16px;gap:17px}
+ .side-summary{gap:9px}
+ .side-summary h2{font-size:25px;line-height:1.12}
+ .side-summary p{font-size:14px;line-height:1.5}
+ .pill-row{display:flex;flex-wrap:wrap;gap:7px}
+ .pill{font-size:10px;line-height:1.2;padding:7px 9px}
+ .audio-panel{grid-template-columns:40px minmax(0,1fr) auto;padding:12px;gap:10px}
+ .audio-panel strong{font-size:13px}
+ .audio-panel small{font-size:11px}
+ .challenge{padding:13px}
+ .challenge strong{font-size:13px;line-height:1.35}
+ .challenge p{font-size:13px;line-height:1.45}
+ .challenge-btn{max-width:100%;white-space:normal}
+ .route-points-section{gap:10px}
+ .point{padding:10px}
+ .point strong{font-size:12px}
+ .point small{font-size:10px}
+ .notice{font-size:11px!important}
+}
+
 </style>
 </head>
 <body>
@@ -211,16 +265,34 @@ body.phone-immersive .scene-wrap{border-radius:0}
       <div class="viewer-foot"><span id="scenePlace">📍 Escena de bienvenida</span><span>Compatible con pantalla táctil y ratón · VR según dispositivo/navegador</span></div>
     </article>
     <aside class="side-card">
-      <div><div class="section-kicker">Estás explorando</div><h2 id="sceneTitle">Mirador de bienvenida</h2><p id="sceneDescription">Esta primera escena utiliza el archivo prueba.jpg subido al repositorio. Si la imagen no es panorámica equirectangular de 360° (proporción 2:1), puede verse estirada o deformada en el visor.</p></div>
-      <div class="pill-row"><span class="pill" id="sceneCategory">PATRIMONIO</span><span class="pill">VISITA 360°</span></div><div class="side-photo-note">Imagen panorámica de demostración · pendiente de sustituir por fotografía definitiva.</div>
-      <div class="audio-panel"><button class="audio-play" id="audioBtn">▶</button><div><strong>Audioguía</strong><small>Escucha la explicación de esta parada</small></div><span>◖))</span></div><div class="section-kicker">RETO DEL RECORRIDO</div><div class="challenge"><span class="challenge-star">★</span><div><strong>Observa a tu alrededor</strong><p>¿Qué detalle de este espacio te gustaría investigar?</p><button class="challenge-btn" id="infoBtn">Descubrir más →</button></div></div>
-      <div class="divider"></div><div class="section-kicker">PUNTOS DE LA RUTA</div>
-      <div class="point-list" id="pointList">
-        <button class="point active" data-scene="0"><span class="point-num">01</span><span><strong>Mirador de bienvenida</strong><small>Aprende a orientarte</small></span></button>
-        <button class="point" data-scene="1"><span class="point-num">02</span><span><strong>La ciudad y sus huellas</strong><small>Observa el paisaje urbano</small></span></button>
-        <button class="point" data-scene="2"><span class="point-num">03</span><span><strong>Un paseo entre historias</strong><small>Descubre detalles del entorno</small></span></button>
+      <div class="side-heading"><span class="side-heading-icon">ⓘ</span><strong>Información del punto</strong></div>
+      <div class="side-inner">
+        <section class="side-summary">
+          <div class="section-kicker">ESTÁS EXPLORANDO</div>
+          <h2 id="sceneTitle">Patio principal</h2>
+          <p id="sceneDescription">Espacio de referencia para presentar la historia, los espacios y la vida cotidiana del centro.</p>
+          <div class="pill-row"><span class="pill" id="sceneCategory">PATRIMONIO</span><span class="pill">VISITA 360°</span></div>
+          <div class="side-photo-note">Imagen panorámica de demostración · pendiente de sustituir por fotografía definitiva.</div>
+        </section>
+        <section class="audio-panel">
+          <button class="audio-play" id="audioBtn" aria-label="Escuchar audioguía">▶</button>
+          <div><strong>Audioguía</strong><small>Escucha la explicación de esta parada</small></div>
+          <span aria-hidden="true">◖))</span>
+        </section>
+        <section class="challenge-section">
+          <div class="section-kicker">RETO DEL RECORRIDO</div>
+          <div class="challenge"><span class="challenge-star" aria-hidden="true">★</span><div><strong>Observa a tu alrededor</strong><p>¿Qué detalle de este espacio te gustaría investigar?</p><button class="challenge-btn" id="infoBtn">Descubrir más →</button></div></div>
+        </section>
+        <section class="route-points-section">
+          <div class="divider"></div><div class="section-kicker">PUNTOS DE LA RUTA</div>
+          <div class="point-list" id="pointList">
+            <button class="point active" data-scene="0"><span class="point-num">01</span><span><strong>Patio principal</strong><small>Explora el espacio</small></span></button>
+            <button class="point" data-scene="1"><span class="point-num">02</span><span><strong>Edificio y espacios comunes</strong><small>Conoce otra parada</small></span></button>
+            <button class="point" data-scene="2"><span class="point-num">03</span><span><strong>Pasillo histórico</strong><small>Descubre nuevos detalles</small></span></button>
+          </div>
+        </section>
+        <p class="notice" id="audioStatus">Audioguía de demostración. Los audios y contenidos definitivos se incorporarán más adelante.</p>
       </div>
-      <p class="notice" id="audioStatus">Audioguía de demostración. Los audios y contenidos definitivos se incorporarán más adelante.</p></div>
     </aside>
   </section>
   <section class="route-bottom">
