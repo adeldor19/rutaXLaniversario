@@ -66,12 +66,71 @@ footer span:first-child{font-weight:800;color:#641c32}
 body.phone-immersive .scene-wrap{background:#000}
 @media(max-width:520px){.brand small{font-size:8px;letter-spacing:.06em}.hero h1{font-size:42px}}
 
+
+/* Rediseño de presentación inspirado en la referencia del centro */
+:root{--ink:#641c32;--muted:#765c5b;--paper:#f6e7d2;--green:#ead0ac;--accent:#7d1734;--line:rgba(100,28,50,.18)}
+html,body{background:#f6e7d2;color:#4a202b}
+.topbar{height:auto;min-height:94px;padding:12px clamp(16px,3vw,48px);gap:20px;background:#fff3e2;border-bottom:0;box-shadow:0 4px 18px rgba(86,25,43,.08)}
+.topbar:after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:20px;background:#74162f;clip-path:polygon(0 0,35% 55%,65% 35%,100% 0,100% 45%,65% 90%,35% 100%,0 45%);z-index:-1}
+.brand{font-family:Georgia,"Times New Roman",serif;font-size:23px;letter-spacing:-.03em;color:#651b32;min-width:260px}
+.brand-mark{width:48px;height:48px;border-radius:0;background:transparent;color:#701932;font-size:21px;border-right:1px solid #d6b798;padding-right:12px}
+.brand small{font-size:9px;letter-spacing:.1em;color:#855564}
+.main-nav{display:flex;align-items:center;justify-content:center;gap:6px;flex:1}
+.nav-item{border:0;border-radius:28px;padding:12px 15px;background:#f0d9bd;color:#651b32;font-size:13px;font-weight:750;white-space:nowrap}
+.nav-item span{margin-left:5px}.nav-item.active{background:#74162f;color:#fff4e7}
+.top-actions{flex-shrink:0}.top-actions .btn{padding:13px 22px}
+main{max-width:1680px;padding:30px clamp(16px,2vw,34px) 20px}
+.hero{display:none}
+.workspace{grid-template-columns:minmax(0,2.2fr) minmax(285px,.58fr);gap:16px;margin-top:8px}
+.viewer-card,.side-card{border-radius:23px;background:#fff3e2;border:1px solid #e0c29e;box-shadow:0 8px 22px rgba(87,34,42,.12)}
+.viewer-card{position:relative}
+.viewer-head{height:0;padding:0;border:0;overflow:visible;position:relative;z-index:3}
+.viewer-head strong{position:absolute;left:18px;top:17px;padding:11px 16px;background:rgba(95,20,43,.88);color:#fff4e7;border-radius:12px;font-size:13px}
+.viewer-head .live-tag{position:absolute;right:18px;top:17px;background:rgba(40,30,28,.8);color:#fff}
+.scene-wrap{height:clamp(420px,52vw,640px);border-radius:22px;background:#2a1718}
+a-scene{border-radius:22px}
+.viewer-location{position:absolute;z-index:3;top:18px;left:20px;display:none}
+.viewer-foot{padding:10px 17px;background:#fff7eb;color:#775a59;font-size:11px}
+.side-card{padding:0;gap:0;overflow:hidden}
+.side-heading{display:flex;align-items:center;gap:11px;background:#70162f;color:#fff2e3;padding:15px 17px;font-family:Georgia,serif;font-size:17px}
+.side-heading-icon{font-family:Arial;font-size:22px}
+.side-inner{padding:17px;display:flex;flex-direction:column;gap:15px}
+.side-card h2{font-family:Georgia,serif;font-size:27px;margin:6px 0;color:#651b32;letter-spacing:-.04em}
+.side-card p{color:#654a4d;font-size:13px;line-height:1.5}
+.pill{background:#f4dfc4;border-color:#e0c29e;color:#711d35}
+.side-photo-note{font-size:10px;line-height:1.4;color:#886f69;border-left:2px solid #a75b6c;padding-left:9px}
+.audio-panel{display:flex;align-items:center;gap:10px;background:#70162f;color:#fff3e6;border-radius:13px;padding:12px}
+.audio-play{width:38px;height:38px;border:0;border-radius:50%;background:#fff1df;color:#70162f;font-size:16px;flex-shrink:0}
+.audio-panel div{flex:1}.audio-panel strong,.audio-panel small{display:block}.audio-panel strong{font-size:12px}.audio-panel small{font-size:10px;opacity:.8;margin-top:4px}.audio-panel>span{font-size:14px}
+.challenge{display:flex;gap:11px;background:#f8e4c9;border:1px solid #e4c49f;border-radius:12px;padding:12px}
+.challenge-star{font-size:28px;color:#b86d13}.challenge strong{font-size:12px}.challenge p{margin:5px 0 8px;font-size:11px}.challenge-btn{background:#70162f;color:#fff3e6;border:0;border-radius:20px;padding:8px 13px;font-size:11px;font-weight:750}
+.point-list{gap:6px}.point{padding:8px;border-radius:10px}.point-num{width:26px;height:26px;background:#ead0ac}.point strong{font-size:11px}.point small{font-size:9px}
+.notice{font-size:10px!important;padding:8px 10px;background:#f3e2cd;border-radius:9px;margin:0}
+.divider{background:#e4c9aa}
+.route-bottom{display:grid;grid-template-columns:minmax(230px,.8fr) minmax(420px,1.7fr) minmax(230px,.8fr);gap:14px;align-items:stretch;margin-top:17px}
+.route-intro,.route-steps,.vr-callout{border-radius:22px;background:#ffefd9;border:1px solid #e4c5a1;box-shadow:0 5px 15px rgba(87,34,42,.07);padding:16px;display:flex;align-items:center}
+.route-intro{gap:13px}.route-pin{font-size:33px;color:#74162f}.route-intro strong{font-family:Georgia,serif;color:#651b32;font-size:16px}.route-intro p{font-size:11px;line-height:1.4;margin:5px 0 0;color:#765c5b}
+.route-steps{justify-content:space-around;gap:5px}.route-step{display:flex;flex-direction:column;align-items:center;gap:7px;border:0;background:transparent;color:#775e5c;min-width:55px;font-size:10px}.route-step span{width:43px;height:43px;border-radius:50%;border:2px solid #d2b391;background:#d7b99b;color:white;display:grid;place-items:center;font-size:20px}.route-step.active span{background:#74162f;border-color:#fff1de;box-shadow:0 0 0 2px #74162f}.route-step.active strong{color:#74162f}.route-steps i{height:3px;flex:1;background:#d2b391;min-width:10px}
+.vr-callout{background:#74162f;color:#fff1df;flex-direction:column;justify-content:center;gap:5px;text-align:center}.vr-callout strong{font-family:Georgia,serif;font-size:19px}.vr-callout span{font-size:10px;opacity:.85}.vr-callout .btn{margin-top:7px;background:#fff1df;color:#74162f;border-color:#fff1df;padding:8px 14px}
+.below{display:none}
+footer{padding-top:15px;padding-bottom:18px;color:#8a6e68}
+.modal{background:#fff0dc}.modal h2{color:#651b32}
+body.phone-immersive .scene-wrap{border-radius:0}
+@media(max-width:1050px){.topbar{flex-wrap:wrap;gap:8px}.brand{min-width:unset;flex:1}.main-nav{order:3;flex-basis:100%;overflow-x:auto;justify-content:flex-start}.workspace{grid-template-columns:1fr}.side-inner{display:grid;grid-template-columns:1fr 1fr}.side-heading{padding:12px 16px}.route-bottom{grid-template-columns:1fr}.route-steps{min-height:100px}.vr-callout{padding:20px}}
+@media(max-width:600px){.topbar{padding:10px 12px}.brand{font-size:17px}.brand-mark{width:34px;height:36px;font-size:16px}.brand small{font-size:7px}.top-actions .btn{padding:10px 12px;font-size:11px}.nav-item{padding:9px 12px;font-size:11px}.nav-item span{margin-left:3px}main{padding:20px 10px}.scene-wrap{height:62vh;min-height:370px}.viewer-head strong{left:10px;top:10px;padding:8px 10px;font-size:11px}.viewer-head .live-tag{right:10px;top:10px}.side-inner{display:flex;padding:13px}.route-steps{overflow-x:auto;justify-content:flex-start}.route-step{min-width:54px}.route-steps i{min-width:16px}.route-intro{padding:13px}.vr-callout{padding:15px}}
+
 </style>
 </head>
 <body>
 <header class="topbar">
   <div class="brand"><div class="brand-mark">AB</div><div>IES ANDRÉS BENÍTEZ<small>RUTAS 360 · PATRIMONIO Y APRENDIZAJE</small></div></div>
-  <div class="top-actions"><button class="btn hide-mobile" id="aboutBtn">Sobre el proyecto</button><button class="btn primary" id="vrBtn">◉ Modo inmersivo</button></div>
+  <nav class="main-nav" aria-label="Navegación principal">
+<button class="nav-item active" data-section="inicio">⌂ <span>Inicio</span></button>
+<button class="nav-item" data-section="rutas">▣ <span>Rutas</span></button>
+<button class="nav-item" data-section="mapa">⌖ <span>Mapa</span></button>
+<button class="nav-item" data-section="desafios">★ <span>Desafíos</span></button>
+<button class="nav-item" id="aboutBtn">ⓘ <span>Información</span></button>
+</nav><div class="top-actions"><button class="btn primary" id="vrBtn">▣ Modo VR</button></div>
 </header>
 <main>
   <section class="hero">
@@ -80,7 +139,7 @@ body.phone-immersive .scene-wrap{background:#000}
   </section>
   <section class="workspace">
     <article class="viewer-card">
-      <div class="viewer-head"><strong id="sceneCounter">01 / 03 · Mirador de bienvenida</strong><span class="live-tag">Versión de demostración</span></div>
+      <div class="viewer-head"><strong id="sceneCounter">01 / 03 · Patio principal</strong><span class="live-tag">360° · DEMO</span></div><div class="viewer-location"><span>⌖</span><div><strong id="locationTitle">Patio principal del IES</strong><small>Nuestra historia, en 360°</small></div></div>
       <div class="scene-wrap">
         <a-scene id="tourScene" embedded vr-mode-ui="enabled: false" loading-screen="enabled: false" renderer="colorManagement: true; antialias: true" device-orientation-permission-ui="enabled: true">
           <a-assets timeout="15000">
@@ -103,21 +162,21 @@ body.phone-immersive .scene-wrap{background:#000}
     </article>
     <aside class="side-card">
       <div><div class="section-kicker">Estás explorando</div><h2 id="sceneTitle">Mirador de bienvenida</h2><p id="sceneDescription">Esta primera escena utiliza el archivo prueba.jpg subido al repositorio. Si la imagen no es panorámica equirectangular de 360° (proporción 2:1), puede verse estirada o deformada en el visor.</p></div>
-      <div class="pill-row"><span class="pill" id="sceneCategory">INTRODUCCIÓN</span><span class="pill">360°</span><span class="pill">AUDIOGUÍA</span></div>
-      <div class="divider"></div><div class="section-kicker">Puntos de la ruta</div>
+      <div class="pill-row"><span class="pill" id="sceneCategory">PATRIMONIO</span><span class="pill">VISITA 360°</span></div><div class="side-photo-note">Imagen panorámica de demostración · pendiente de sustituir por fotografía definitiva.</div>
+      <div class="audio-panel"><button class="audio-play" id="audioBtn">▶</button><div><strong>Audioguía</strong><small>Escucha la explicación de esta parada</small></div><span>◖))</span></div><div class="section-kicker">RETO DEL RECORRIDO</div><div class="challenge"><span class="challenge-star">★</span><div><strong>Observa a tu alrededor</strong><p>¿Qué detalle de este espacio te gustaría investigar?</p><button class="challenge-btn" id="infoBtn">Descubrir más →</button></div></div>
+      <div class="divider"></div><div class="section-kicker">PUNTOS DE LA RUTA</div>
       <div class="point-list" id="pointList">
         <button class="point active" data-scene="0"><span class="point-num">01</span><span><strong>Mirador de bienvenida</strong><small>Aprende a orientarte</small></span></button>
         <button class="point" data-scene="1"><span class="point-num">02</span><span><strong>La ciudad y sus huellas</strong><small>Observa el paisaje urbano</small></span></button>
         <button class="point" data-scene="2"><span class="point-num">03</span><span><strong>Un paseo entre historias</strong><small>Descubre detalles del entorno</small></span></button>
       </div>
-      <div class="side-actions"><button class="btn" id="audioBtn">▶ Escuchar guía</button><button class="btn" id="infoBtn">Leer historia</button></div>
-      <p class="notice" id="audioStatus">La audioguía utiliza voz del navegador en esta demo. Después podrás usar tus propios audios grabados.</p>
+      <p class="notice" id="audioStatus">Audioguía de demostración. Los audios y contenidos definitivos se incorporarán más adelante.</p></div>
     </aside>
   </section>
-  <section class="below">
-    <article class="feature"><div class="icon">◉</div><strong>Inmersión real</strong><p>Entra en el modo VR desde un navegador compatible. La compatibilidad final se comprobará cuando sepamos el modelo de gafas.</p></article>
-    <article class="feature"><div class="icon">⌖</div><strong>Aprender explorando</strong><p>Las paradas pueden incluir datos históricos, preguntas, vocabulario y pequeñas misiones para visitas escolares.</p></article>
-    <article class="feature"><div class="icon">↗</div><strong>Crece con tus fotografías</strong><p>La guía se publica en GitHub Pages. Cada nueva panorámica puede añadirse como una parada sin rehacer la web.</p></article>
+  <section class="route-bottom">
+    <article class="route-intro"><div class="route-pin">⌖</div><div><strong>Tu recorrido</strong><p>Avanza por las diferentes paradas para completar la ruta.</p></div></article>
+    <div class="route-steps" id="routeSteps"><button class="route-step active" data-scene="0"><span>⌂</span><strong>1. Patio</strong></button><i></i><button class="route-step" data-scene="1"><span>▤</span><strong>2. Edificio</strong></button><i></i><button class="route-step" data-scene="2"><span>▣</span><strong>3. Pasillo</strong></button><i></i><button class="route-step" data-scene="2"><span>♧</span><strong>4. Jardines</strong></button><i></i><button class="route-step" data-scene="2"><span>⚑</span><strong>5. Meta</strong></button></div>
+    <article class="vr-callout"><strong>▣ Entrar en VR</strong><span>Vive la experiencia inmersiva</span><button class="btn primary" id="bottomVrBtn">Probar modo VR →</button></article>
   </section>
 </main>
 <footer><span>IES Andrés Benítez · Proyecto Rutas 360</span><span>Prototipo en desarrollo · Contenidos e imágenes sujetos a revisión</span></footer>
@@ -125,16 +184,26 @@ body.phone-immersive .scene-wrap{background:#000}
 <script>
 const stops = [
  {title:"Mirador de bienvenida",place:"Escena de bienvenida",category:"INTRODUCCIÓN",description:"Detente un momento, mira alrededor y acostúmbrate a explorar el espacio en todas las direcciones. Esta escena es una panorámica de muestra.",story:"Esta parada carga el archivo prueba.jpg desde el repositorio. Para comprobar una experiencia 360° completa, la imagen debe ser una panorámica equirectangular de 360°, preferiblemente con proporción 2:1. Si es una foto normal, aparecerá deformada al proyectarla sobre la esfera.",curiosity:"Reto de observación: encuentra tres detalles del entorno antes de continuar.",image:"#pano0",rotation:"0 -90 0"},
- {title:"La ciudad y sus huellas",place:"Paisaje urbano de demostración",category:"PATRIMONIO",description:"Observa cómo los edificios, las calles y los espacios compartidos cuentan historias sobre la forma de vivir de una comunidad.",story:"Las ciudades conservan huellas de distintas épocas. En una ruta real podemos explicar cómo evolucionó el trazado urbano, qué materiales se utilizaron y cómo se relacionan los edificios con la vida cotidiana. Esta escena utiliza una imagen genérica de demostración, no una localización identificada.",curiosity:"Reto educativo: identifica un elemento natural y dos elementos construidos.",image:"#pano1",rotation:"0 0 0"},
- {title:"Un paseo entre historias",place:"Panorámica de demostración",category:"OBSERVACIÓN",description:"Explora el entorno y elige un detalle que te gustaría investigar: arquitectura, transporte, naturaleza o vida cotidiana.",story:"Una audioguía no tiene por qué limitarse a ofrecer fechas. También puede plantear preguntas, relacionar el lugar con su entorno y ayudarte a observar de otra manera. En una visita educativa, el alumnado puede recoger evidencias, comparar puntos de vista y crear su propia explicación del lugar.",curiosity:"Reto: formula una pregunta que harías a una persona que conociera bien este lugar.",image:"#pano2",rotation:"0 0 0"}
+ {title:"Edificio y espacios comunes",place:"Parada 2 · Espacio por definir",category:"RECORRIDO",description:"Esta parada de muestra representa cómo se presentará otro espacio de la ruta. La fotografía definitiva y su explicación están pendientes.",story:"En esta parada podremos explicar usos, características arquitectónicas y anécdotas del lugar. El contenido se completará al incorporar las imágenes propias del recorrido.",curiosity:"Reto: ¿qué información incluirías para ayudar a un visitante a entender este espacio?",image:"#pano1",rotation:"0 0 0"},
+ {title:"Pasillo histórico",place:"Parada 3 · Espacio por definir",category:"EXPLORACIÓN",description:"Una tercera parada de demostración para anticipar un recorrido conectado por diferentes espacios y puntos de interés.",story:"Cada parada podrá reunir fotografía 360°, texto interpretativo, audio y pequeños retos para que la visita sea también una experiencia de aprendizaje. Esta ficha es provisional y se adaptará al lugar real.",curiosity:"Reto: formula una pregunta que harías a una persona que conozca bien este lugar.",image:"#pano2",rotation:"0 0 0"}
 ];
 let current=0;
 const $=id=>document.getElementById(id);
 function stopSpeech(){if("speechSynthesis"in window)window.speechSynthesis.cancel();$("audioBtn").textContent="▶ Escuchar guía"}
 function speak(text){if(!("speechSynthesis"in window)){$("audioStatus").textContent="Este navegador no ofrece síntesis de voz. Podremos incorporar un archivo de audio grabado.";return}stopSpeech();const utterance=new SpeechSynthesisUtterance(text);utterance.lang="es-ES";utterance.rate=.92;utterance.onend=()=>{$("audioBtn").textContent="▶ Escuchar guía";$("audioStatus").textContent="Audioguía finalizada. Puedes seguir explorando."};window.speechSynthesis.speak(utterance);$("audioBtn").textContent="Ⅱ Reproduciendo";$("audioStatus").textContent="Reproduciendo explicación de esta parada."}
-function updateScene(index){current=(index+stops.length)%stops.length;const s=stops[current];$("panorama").setAttribute("src",s.image);$("panorama").setAttribute("rotation",s.rotation);$("sceneCounter").textContent=String(current+1).padStart(2,"0")+" / "+String(stops.length).padStart(2,"0")+" · "+s.title;$("sceneTitle").textContent=s.title;$("scenePlace").textContent="📍 "+s.place;$("sceneDescription").textContent=s.description;$("sceneCategory").textContent=s.category;document.querySelectorAll(".point").forEach((b,i)=>b.classList.toggle("active",i===current));stopSpeech();$("audioStatus").textContent="Listo para escuchar la explicación de esta parada."}
+function updateScene(index){current=(index+stops.length)%stops.length;const s=stops[current];if($("locationTitle"))$("locationTitle").textContent=s.place;document.querySelectorAll(".route-step[data-scene]").forEach((b)=>b.classList.toggle("active",Number(b.dataset.scene)===current));$("panorama").setAttribute("src",s.image);$("panorama").setAttribute("rotation",s.rotation);$("sceneCounter").textContent=String(current+1).padStart(2,"0")+" / "+String(stops.length).padStart(2,"0")+" · "+s.title;$("sceneTitle").textContent=s.title;$("scenePlace").textContent="📍 "+s.place;$("sceneDescription").textContent=s.description;$("sceneCategory").textContent=s.category;document.querySelectorAll(".point").forEach((b,i)=>b.classList.toggle("active",i===current));stopSpeech();$("audioStatus").textContent="Listo para escuchar la explicación de esta parada."}
 function showInfo(){const s=stops[current];$("modalKicker").textContent=s.category;$("modalTitle").textContent=s.title;$("modalText").textContent=s.story+" "+s.curiosity;$("modalBackdrop").classList.add("open")}
 $("prevBtn").addEventListener("click",()=>updateScene(current-1));$("nextBtn").addEventListener("click",()=>updateScene(current+1));
+document.querySelectorAll(".route-step[data-scene]").forEach(b=>b.addEventListener("click",()=>updateScene(Number(b.dataset.scene))));
+$("bottomVrBtn").addEventListener("click",()=>$("vrBtn").click());
+document.querySelectorAll(".nav-item[data-section]").forEach(b=>b.addEventListener("click",()=>{
+ document.querySelectorAll(".nav-item").forEach(n=>n.classList.remove("active"));b.classList.add("active");
+ const section=b.dataset.section;
+ if(section==="rutas")document.querySelector(".route-bottom").scrollIntoView({behavior:"smooth",block:"center"});
+ else if(section==="mapa")showInfo();
+ else if(section==="desafios")document.querySelector(".challenge").scrollIntoView({behavior:"smooth",block:"center"});
+ else window.scrollTo({top:0,behavior:"smooth"});
+}));
 document.querySelectorAll(".point").forEach(b=>b.addEventListener("click",()=>updateScene(Number(b.dataset.scene))));
 $("infoBtn").addEventListener("click",showInfo);$("modalClose").addEventListener("click",()=>$("modalBackdrop").classList.remove("open"));$("modalAudio").addEventListener("click",()=>speak(stops[current].story));
 $("audioBtn").addEventListener("click",()=>{if("speechSynthesis"in window&&window.speechSynthesis.speaking){stopSpeech()}else{speak(stops[current].story+" "+stops[current].curiosity)}});
