@@ -229,7 +229,7 @@ body.phone-immersive .scene-wrap{border-radius:0}
 .audio-play{display:grid;place-items:center;width:44px;height:44px;margin:auto;border:0;border-radius:50%;background:#fff1df;color:#70162f;font-size:20px;line-height:1;padding-left:4px;flex:none}
 @media(max-width:600px){.audio-panel{min-height:58px;padding:8px}.audio-play{width:42px;height:42px;font-size:19px}}
 
-</style>
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}</style>
 </head>
 <body>
 <header class="topbar">
@@ -280,10 +280,8 @@ body.phone-immersive .scene-wrap{border-radius:0}
           <div class="pill-row"><span class="pill" id="sceneCategory">PATRIMONIO</span><span class="pill">VISITA 360°</span></div>
           <div class="side-photo-note">Imagen panorámica de demostración · pendiente de sustituir por fotografía definitiva.</div>
         </section>
-        <section class="audio-panel">
+        <section class="audio-panel" aria-label="Audioguía">
           <button class="audio-play" id="audioBtn" aria-label="Reproducir audioguía" title="Reproducir audioguía">▶</button>
-          <div><strong>Audioguía</strong><small>Escucha la explicación de esta parada</small></div>
-          <span aria-hidden="true">◖))</span>
         </section>
         <section class="challenge-section">
           <div class="section-kicker">RETO DEL RECORRIDO</div>
@@ -297,7 +295,7 @@ body.phone-immersive .scene-wrap{border-radius:0}
             <button class="point" data-scene="2"><span class="point-num">03</span><span><strong>Virgen de Consolación</strong><small>Santo Domingo · retablo-baldaquino</small></span></button>
           </div>
         </section>
-        <p class="notice" id="audioStatus">Audioguía de demostración. Los audios y contenidos definitivos se incorporarán más adelante.</p>
+        <span id="audioStatus" class="visually-hidden" aria-live="polite"></span>
       </div>
     </aside>
   </section>
@@ -317,8 +315,8 @@ const stops = [
 ];
 let current=0;
 const $=id=>document.getElementById(id);
-function stopSpeech(){if("speechSynthesis"in window)window.speechSynthesis.cancel();$("audioBtn").textContent="▶ Escuchar guía"}
-function speak(text){if(!("speechSynthesis"in window)){$("audioStatus").textContent="Este navegador no ofrece síntesis de voz. Podremos incorporar un archivo de audio grabado.";return}stopSpeech();const utterance=new SpeechSynthesisUtterance(text);utterance.lang="es-ES";utterance.rate=.92;utterance.onend=()=>{$("audioBtn").textContent="▶ Escuchar guía";$("audioStatus").textContent="Audioguía finalizada. Puedes seguir explorando."};window.speechSynthesis.speak(utterance);$("audioBtn").textContent="Ⅱ Reproduciendo";$("audioStatus").textContent="Reproduciendo explicación de esta parada."}
+function stopSpeech(){if("speechSynthesis"in window)window.speechSynthesis.cancel();$("audioBtn").textContent="▶"}
+function speak(text){if(!("speechSynthesis"in window)){$("audioStatus").textContent="Este navegador no ofrece síntesis de voz. Podremos incorporar un archivo de audio grabado.";return}stopSpeech();const utterance=new SpeechSynthesisUtterance(text);utterance.lang="es-ES";utterance.rate=.92;utterance.onend=()=>{$("audioBtn").textContent="▶";$("audioStatus").textContent="Audioguía finalizada. Puedes seguir explorando."};window.speechSynthesis.speak(utterance);$("audioBtn").textContent="Ⅱ";$("audioStatus").textContent="Reproduciendo explicación de esta parada."}
 function updateScene(index){current=(index+stops.length)%stops.length;const s=stops[current];if($("locationTitle"))$("locationTitle").textContent=s.place;document.querySelectorAll(".route-step[data-scene]").forEach((b)=>b.classList.toggle("active",Number(b.dataset.scene)===current));$("panorama").setAttribute("src",s.image);$("panorama").setAttribute("rotation",s.rotation);$("sceneCounter").textContent=String(current+1).padStart(2,"0")+" / "+String(stops.length).padStart(2,"0")+" · "+s.title;$("sceneTitle").textContent=s.title;$("scenePlace").textContent="📍 "+s.place;$("sceneDescription").textContent=s.description;$("sceneCategory").textContent=s.category;document.querySelectorAll(".point").forEach((b,i)=>b.classList.toggle("active",i===current));stopSpeech();$("audioStatus").textContent="Listo para escuchar la explicación de esta parada."}
 function showInfo(){const s=stops[current];$("modalKicker").textContent=s.category;$("modalTitle").textContent=s.title;$("modalText").textContent=s.story+" "+s.curiosity;$("modalBackdrop").classList.add("open")}
 $("prevBtn").addEventListener("click",()=>updateScene(current-1));$("nextBtn").addEventListener("click",()=>updateScene(current+1));
